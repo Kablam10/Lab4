@@ -8,19 +8,43 @@
  * 5. Remove unnecessary comments as appropriate
  */
 
-public class ReclamationProject
-{
-    static String doit(String a,String b){
-        if (a.length() > b.length()){
-            String c = a; // TODO: set c to a
-            a=b; b=c;}
-        String r = (a.equals(b)) ? "" : ""; // I love the ternary operator!
-        /*
-         * For loop with i
-         */
-        for (int i = 0; i < a.length(); i++) { for (int j = a.length() - i; j > 0; j--) {
-                for (int k = 0; k < b.length()- j; k++) {
-                    r = (a.regionMatches(i, b, k, j) && j >r.length()) ? a.substring(i,i + j) : r; // Do it!
-                        }} // Ah yeah
-        } return r; }
+/**
+ * This class will find the longest substring found in two different strings.
+ * @author mpiunti2
+ */
+public class ReclamationProject {
+
+    /**
+     * Finds the longest substring found in two given strings.
+     * @param first the first input string
+     * @param second the second input string
+     * @return the longest substring shared by both strings
+     */
+
+    public static String longestMatchingSubstring(final String first, final String second) {
+        String first2 = first;
+        String second2 = second;
+
+        // set the strings to be in lexicographical order
+        if (second2.length() > first2.length()) {
+            String temp = first2; // set c to a
+            first2 = second2;
+            second2 = temp;
+        }
+
+        String match = "";
+
+        // finds the longest match
+        for (int i = 0; i < first2.length(); i++) {
+            for (int j = first2.length() - i; j > 0; j--) {
+                for (int k = 0; k < second2.length() - j; k++) {
+                    if (first2.regionMatches(i, second2, k, j)
+                        && j > match.length()) {
+                        match = first2.substring(i, i + j);
+                    }
+                }
+            }
+        }
+        return match;
+    }
 }
